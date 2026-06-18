@@ -5,7 +5,6 @@ class Database {
     private $host = "localhost";
     private $username = "root";
     private $password = "";
-    // Menggunakan nama database sesuai berkas .sql Anda
     private $database = "db_simulasi_pbo_ti1d_muntiakinantiputri"; 
     protected $conn;
 
