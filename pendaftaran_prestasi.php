@@ -1,4 +1,5 @@
 <?php
+// File: pendaftaran_prestasi.php
 require_once 'pendaftaran.php';
 
 class pendaftaran_prestasi extends pendaftaran {
@@ -13,8 +14,7 @@ class pendaftaran_prestasi extends pendaftaran {
 
     public static function getDaftarPrestasi($db) {
         $query = "SELECT id_pendaftaran, nama_calon, asal_sekolah, nilai_ujian, biaya_pendaftaran_dasar, jenis_prestasi, tingkat_prestasi 
-                  FROM tabel_pendaftaran 
-                  WHERE jalur_pendaftaran = 'Prestasi'";
+                  FROM tabel_pendaftaran WHERE jalur_pendaftaran = 'Prestasi'";
         
         $stmt = $db->prepare($query);
         $stmt->execute();
@@ -34,13 +34,12 @@ class pendaftaran_prestasi extends pendaftaran {
         return $daftarPrestasi;
     }
 
-    // TAHAP 5: OVERRIDING: Potongan Rp50.000
     public function hitungTotalBiaya() {
-        return $this->biayaPendaftaranDasar - 50000;
+        return $this->biayaPendaftaranDasar - 50000; // Diskon prestasi Rp50.000
     }
 
     public function tampilkanInfoJalur() {
-        return "Jalur Pendaftaran: Prestasi | Jenis: " . $this->jenisPrestasi . " | Tingkat: " . $this->tingkatPrestasi;
+        return "Prestasi: " . $this->jenisPrestasi . " (" . $this->tingkatPrestasi . ")";
     }
 }
 ?>

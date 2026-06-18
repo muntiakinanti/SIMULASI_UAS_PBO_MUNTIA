@@ -1,4 +1,5 @@
 <?php
+// File: pendaftaran_reguler.php
 require_once 'pendaftaran.php';
 
 class pendaftaran_reguler extends pendaftaran {
@@ -12,9 +13,10 @@ class pendaftaran_reguler extends pendaftaran {
     }
 
     public static function getDaftarReguler($db) {
+        $query = "SELECT id_pendaftaran, nama_calon, asal_sekolah, nilai_ujian, biaya_pendaftaran_dasar, pilihan_prodi, lokasi_campur = lokasi_kampus FROM tabel_pendaftaran WHERE jalur_pendaftaran = 'Reguler'";
+        // Opsional: Jika kolom di DB Anda bernama lokasi_kampus, gunakan kueri di bawah ini:
         $query = "SELECT id_pendaftaran, nama_calon, asal_sekolah, nilai_ujian, biaya_pendaftaran_dasar, pilihan_prodi, lokasi_kampus 
-                  FROM tabel_pendaftaran 
-                  WHERE jalur_pendaftaran = 'Reguler'";
+                  FROM tabel_pendaftaran WHERE jalur_pendaftaran = 'Reguler'";
         
         $stmt = $db->prepare($query);
         $stmt->execute();
@@ -34,13 +36,12 @@ class pendaftaran_reguler extends pendaftaran {
         return $daftarReguler;
     }
 
-    // TAHAP 5 : OVERRIDING: Tarif Standar Murni
     public function hitungTotalBiaya() {
-        return $this->biayaPendaftaranDasar;
+        return $this->biayaPendaftaranDasar; // Murni standar tanpa biaya tambahan
     }
 
     public function tampilkanInfoJalur() {
-        return "Jalur Pendaftaran: Reguler | Prodi: " . $this->pilihanProdi . " | Kampus: " . $this->lokasiKampus;
+        return "Prodi: " . $this->pilihanProdi . " | Kampus: " . $this->lokasiKampus;
     }
 }
 ?>

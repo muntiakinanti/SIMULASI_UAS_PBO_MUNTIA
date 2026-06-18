@@ -1,4 +1,5 @@
 <?php
+// File: pendaftaran_kedinasan.php
 require_once 'pendaftaran.php';
 
 class pendaftaran_kedinasan extends pendaftaran {
@@ -13,8 +14,7 @@ class pendaftaran_kedinasan extends pendaftaran {
 
     public static function getDaftarKedinasan($db) {
         $query = "SELECT id_pendaftaran, nama_calon, asal_sekolah, nilai_ujian, biaya_pendaftaran_dasar, sk_ikatan_dinas, instansi_sponsor 
-                  FROM tabel_pendaftaran 
-                  WHERE jalur_pendaftaran = 'Kedinasan'";
+                  FROM tabel_pendaftaran WHERE jalur_pendaftaran = 'Kedinasan'";
         
         $stmt = $db->prepare($query);
         $stmt->execute();
@@ -34,13 +34,12 @@ class pendaftaran_kedinasan extends pendaftaran {
         return $daftarKedinasan;
     }
 
-    // TAHAP 5 : OVERRIDING: Surcharge Tambahan 25%
     public function hitungTotalBiaya() {
-        return $this->biayaPendaftaranDasar * 1.25;
+        return $this->biayaPendaftaranDasar * 1.25; // Surcharge administrasi dinas 25%
     }
 
     public function tampilkanInfoJalur() {
-        return "Jalur Pendaftaran: Kedinasan | SK: " . $this->skIkatanDinas . " | Sponsor: " . $this->instansiSponsor;
+        return "SK: " . $this->skIkatanDinas . " | Sponsor: " . $this->instansiSponsor;
     }
 }
 ?>
