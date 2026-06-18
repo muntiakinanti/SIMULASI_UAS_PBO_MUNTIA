@@ -1,5 +1,4 @@
 <?php
-// File: pendaftaran_prestasi.php
 require_once 'pendaftaran.php';
 
 class pendaftaran_prestasi extends pendaftaran {
@@ -35,8 +34,9 @@ class pendaftaran_prestasi extends pendaftaran {
         return $daftarPrestasi;
     }
 
+    // TAHAP 5: OVERRIDING: Potongan Rp50.000
     public function hitungTotalBiaya() {
-        return $this->biayaPendaftaranDasar;
+        return $this->biayaPendaftaranDasar - 50000;
     }
 
     public function tampilkanInfoJalur() {

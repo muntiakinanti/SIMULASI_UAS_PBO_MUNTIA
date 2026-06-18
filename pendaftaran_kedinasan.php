@@ -1,5 +1,4 @@
 <?php
-// File: pendaftaran_kedinasan.php
 require_once 'pendaftaran.php';
 
 class pendaftaran_kedinasan extends pendaftaran {
@@ -35,8 +34,9 @@ class pendaftaran_kedinasan extends pendaftaran {
         return $daftarKedinasan;
     }
 
+    // TAHAP 5 : OVERRIDING: Surcharge Tambahan 25%
     public function hitungTotalBiaya() {
-        return $this->biayaPendaftaranDasar;
+        return $this->biayaPendaftaranDasar * 1.25;
     }
 
     public function tampilkanInfoJalur() {
